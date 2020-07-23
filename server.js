@@ -15,7 +15,37 @@ var server = http.createServer(function (req, resp) {
              
             resp.end();
         });
-    } else {
+    } 
+
+    else if (req.url === "/prod.html") {
+        fs.readFile("MyPages/prod.html", function (error, pgResp) {
+            if (error) {
+                resp.writeHead(404);
+                resp.write('Contents you are looking are Not Found');
+            } else {
+                resp.writeHead(200, { 'Content-Type': 'text/html' });
+                resp.write(pgResp);
+            }
+             
+            resp.end();
+        });
+    } 
+    
+    else if (req.url === "/ajwain.html") {
+        fs.readFile("MyPages/ajwain.html", function (error, pgResp) {
+            if (error) {
+                resp.writeHead(404);
+                resp.write('Contents you are looking are Not Found');
+            } else {
+                resp.writeHead(200, { 'Content-Type': 'text/html' });
+                resp.write(pgResp);
+            }
+             
+            resp.end();
+        });
+    } 
+    
+    else {
         
         resp.writeHead(200, { 'Content-Type': 'text/html' });
         resp.write('<h1>Error</h1><br /><br />To create paage please enter: ' + req.url);
